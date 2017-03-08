@@ -36,13 +36,14 @@
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.connectionStringsGrid = new System.Windows.Forms.DataGridView();
+            this.ConnectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConnectionString = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsSql = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnCommit = new System.Windows.Forms.Button();
             this.comboSubscription = new System.Windows.Forms.ComboBox();
-            this.ConnectionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConnectionString = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsSql = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,7 +68,7 @@
             this.btnLoadCredentials.TabIndex = 0;
             this.btnLoadCredentials.Text = "Connect";
             this.btnLoadCredentials.UseVisualStyleBackColor = true;
-            this.btnLoadCredentials.Click += new System.EventHandler(this.btnLoadCredentials_Click);
+            this.btnLoadCredentials.Click += new System.EventHandler(this.BtnLoadCredentials_Click);
             // 
             // splitContainer1
             // 
@@ -96,7 +97,7 @@
             this.lstApps.Name = "lstApps";
             this.lstApps.Size = new System.Drawing.Size(125, 422);
             this.lstApps.TabIndex = 0;
-            this.lstApps.SelectedIndexChanged += new System.EventHandler(this.lstApps_SelectedIndexChanged);
+            this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
             // 
             // splitContainer2
             // 
@@ -155,6 +156,24 @@
             this.connectionStringsGrid.Size = new System.Drawing.Size(481, 133);
             this.connectionStringsGrid.TabIndex = 0;
             // 
+            // ConnectionName
+            // 
+            this.ConnectionName.HeaderText = "Name";
+            this.ConnectionName.Name = "ConnectionName";
+            this.ConnectionName.Width = 60;
+            // 
+            // ConnectionString
+            // 
+            this.ConnectionString.HeaderText = "ConnectionString";
+            this.ConnectionString.Name = "ConnectionString";
+            this.ConnectionString.Width = 113;
+            // 
+            // IsSql
+            // 
+            this.IsSql.HeaderText = "Is SQL?";
+            this.IsSql.Name = "IsSql";
+            this.IsSql.Width = 51;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -181,7 +200,7 @@
             this.btnCommit.TabIndex = 3;
             this.btnCommit.Text = "Commit";
             this.btnCommit.UseVisualStyleBackColor = true;
-            this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
+            this.btnCommit.Click += new System.EventHandler(this.BtnCommit_Click);
             // 
             // comboSubscription
             // 
@@ -189,37 +208,27 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboSubscription.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSubscription.FormattingEnabled = true;
-            this.comboSubscription.Items.AddRange(new object[] {
-            "Codat Production=8788e380-a3ab-4104-8ddb-951356d22460",
-            "Codat Bizspark (David)=3cc41c9f-fa1a-42c1-ad39-8961c0ec5267"});
             this.comboSubscription.Location = new System.Drawing.Point(12, 12);
             this.comboSubscription.Name = "comboSubscription";
-            this.comboSubscription.Size = new System.Drawing.Size(610, 21);
+            this.comboSubscription.Size = new System.Drawing.Size(572, 21);
             this.comboSubscription.TabIndex = 4;
             // 
-            // ConnectionName
+            // btnSettings
             // 
-            this.ConnectionName.HeaderText = "Name";
-            this.ConnectionName.Name = "ConnectionName";
-            this.ConnectionName.Width = 60;
-            // 
-            // ConnectionString
-            // 
-            this.ConnectionString.HeaderText = "ConnectionString";
-            this.ConnectionString.Name = "ConnectionString";
-            this.ConnectionString.Width = 113;
-            // 
-            // IsSql
-            // 
-            this.IsSql.HeaderText = "Is SQL?";
-            this.IsSql.Name = "IsSql";
-            this.IsSql.Width = 51;
+            this.btnSettings.Location = new System.Drawing.Point(590, 10);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(32, 23);
+            this.btnSettings.TabIndex = 5;
+            this.btnSettings.Text = "...";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 553);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.comboSubscription);
             this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.statusStrip1);
@@ -228,6 +237,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
             this.Text = "Azure Config Viewer";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -262,6 +272,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ConnectionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ConnectionString;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsSql;
+        private System.Windows.Forms.Button btnSettings;
     }
 }
 
