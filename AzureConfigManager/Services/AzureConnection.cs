@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AzureConfigManager.Configuration;
+using AzureConfigManager.Models;
 using Microsoft.Azure;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.WindowsAzure.Management.WebSites;
 using Microsoft.WindowsAzure.Management.WebSites.Models;
 
-namespace AzureConfigManager
+namespace AzureConfigManager.Services
 {
     public class AzureConnection
     {

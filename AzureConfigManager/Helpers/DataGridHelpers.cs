@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using AzureConfigManager.Models;
 
-namespace AzureConfigManager
+namespace AzureConfigManager.Helpers
 {
     public static class DataGridHelpers
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AzureConfigManager
+namespace AzureConfigManager.Models
 {
     public class WebApp
     {

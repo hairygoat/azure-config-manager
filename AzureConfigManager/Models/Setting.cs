@@ -1,4 +1,4 @@
-namespace AzureConfigManager
+namespace AzureConfigManager.Models
 {
     public class Setting
     {

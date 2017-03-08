@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using AzureConfigManager.Configuration;
+using AzureConfigManager.Helpers;
 
 namespace AzureConfigManager
 {

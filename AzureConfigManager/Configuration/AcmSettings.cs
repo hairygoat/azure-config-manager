@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace AzureConfigManager
+namespace AzureConfigManager.Configuration
 {
     public class AcmSettings
     {
