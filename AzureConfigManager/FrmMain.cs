@@ -12,8 +12,8 @@ namespace AzureConfigManager
 {
     public partial class FrmMain : Form
     {
-        private List<WebApp> _apps;
         private readonly AzureConnection _azure;
+        private List<WebApp> _apps;
 
         public FrmMain()
         {
@@ -76,7 +76,8 @@ namespace AzureConfigManager
             PopulateDataGridFromSettings(connectionStringsGrid, app.ConnectionStrings, true);
         }
 
-        private static void PopulateDataGridFromSettings(DataGridView dataGrid, IEnumerable<Setting> settings, bool withSql)
+        private static void PopulateDataGridFromSettings(DataGridView dataGrid, IEnumerable<Setting> settings,
+            bool withSql)
         {
             object[][] rows;
 
@@ -86,11 +87,12 @@ namespace AzureConfigManager
             }
             else
             {
-                rows = settings.Select(a => new object[] { a.Key, a.Value }).ToArray();
+                rows = settings.Select(a => new object[] {a.Key, a.Value}).ToArray();
             }
-            
+
             dataGrid.Rows.Clear();
-            foreach (var row in rows) {
+            foreach (var row in rows)
+            {
                 dataGrid.Rows.Add(row);
             }
         }

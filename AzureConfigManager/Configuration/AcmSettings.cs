@@ -10,6 +10,7 @@ namespace AzureConfigManager.Configuration
         {
             Subscriptions = new Dictionary<string, string>();
         }
+
         public string Login { get; set; }
         public string TenantId { get; set; }
         public string ApiEndpoint { get; set; }

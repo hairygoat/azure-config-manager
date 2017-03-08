@@ -30,7 +30,7 @@ namespace AzureConfigManager.Helpers
                     {
                         Key = rowArray[0].Value.ToString(),
                         Value = rowArray[1].Value.ToString(),
-                        IsSql = (bool)(rowArray[2]?.Value ?? false)
+                        IsSql = (bool) (rowArray[2]?.Value ?? false)
                     });
                 }
                 else
@@ -49,9 +49,9 @@ namespace AzureConfigManager.Helpers
         public static Dictionary<string, string> DataGridToDictionary(DataGridView grid)
         {
             return grid.Rows
-                       .OfType<DataGridViewRow>()
-                       .Where(r => r.Cells[0].Value != null && r.Cells[1].Value != null)
-                       .ToDictionary(r => r.Cells[0].Value.ToString(), r => r.Cells[1].Value.ToString());
+                .OfType<DataGridViewRow>()
+                .Where(r => r.Cells[0].Value != null && r.Cells[1].Value != null)
+                .ToDictionary(r => r.Cells[0].Value.ToString(), r => r.Cells[1].Value.ToString());
         }
 
         public static void FillDataGridFromDictionary(DataGridView grid, Dictionary<string, string> dictionary)

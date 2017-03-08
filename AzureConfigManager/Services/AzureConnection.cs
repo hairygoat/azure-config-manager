@@ -21,12 +21,17 @@ namespace AzureConfigManager.Services
             var token = GetAuthorizationHeader();
             _credentials = new TokenCloudCredentials(subscriptionId, token);
         }
+
         public async Task<List<WebApp>> GetApps()
         {
             using (var client = new WebSiteManagementClient(_credentials))
             {
                 var spaces = await client.WebSpaces.ListAsync();
-                var sites = (await Task.WhenAll(spaces.Select(async s => await client.WebSpaces.ListWebSitesAsync(s.Name, new WebSiteListParameters())).ToList())).SelectMany(a => a);
+                var sites =
+                (await Task.WhenAll(
+                    spaces.Select(
+                            async s => await client.WebSpaces.ListWebSitesAsync(s.Name, new WebSiteListParameters()))
+                        .ToList())).SelectMany(a => a);
 
                 var apps = await Task.WhenAll(sites.Select(async s => await GetWebApp(client, s)).ToList());
                 return apps.OrderBy(a => a.Name).ToList();
@@ -54,11 +59,14 @@ namespace AzureConfigManager.Services
 
         private static async Task<WebApp> GetWebApp(IWebSiteManagementClient client, WebSite site)
         {
-            var currentConfig = await client.WebSites.GetConfigurationAsync(site.WebSpace, site.Name, CancellationToken.None);
-            var settings = currentConfig.AppSettings.Select(d => new Setting { Key = d.Key, Value = d.Value, IsSql = false }).ToList();
+            var currentConfig = await client.WebSites.GetConfigurationAsync(site.WebSpace, site.Name,
+                CancellationToken.None);
+            var settings =
+                currentConfig.AppSettings.Select(d => new Setting {Key = d.Key, Value = d.Value, IsSql = false})
+                    .ToList();
             var connectionStrings = currentConfig.ConnectionStrings.Select(MapConnectionStringToSetting).ToList();
 
-            var webApp = new WebApp()
+            var webApp = new WebApp
             {
                 Name = site.Name,
                 WebSpace = site.WebSpace,
@@ -84,7 +92,7 @@ namespace AzureConfigManager.Services
             {
                 Key = d.Name,
                 Value = d.ConnectionString,
-                IsSql = (d.Type == ConnectionStringType.SqlAzure || d.Type == ConnectionStringType.SqlServer)
+                IsSql = d.Type == ConnectionStringType.SqlAzure || d.Type == ConnectionStringType.SqlServer
             };
         }
 
@@ -94,14 +102,15 @@ namespace AzureConfigManager.Services
             AuthenticationResult result = null;
 
             var context = new AuthenticationContext(string.Format(
-              config.Login,
-              config.TenantId));
+                config.Login,
+                config.TenantId));
 
-            var thread = new Thread(() => {
+            var thread = new Thread(() =>
+            {
                 result = context.AcquireToken(
-                  config.ApiEndpoint,
-                  config.ClientId,
-                  new Uri(config.RedirectUri));
+                    config.ApiEndpoint,
+                    config.ClientId,
+                    new Uri(config.RedirectUri));
             });
 
             thread.SetApartmentState(ApartmentState.STA);
