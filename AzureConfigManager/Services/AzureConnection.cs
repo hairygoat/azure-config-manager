@@ -22,18 +22,21 @@ namespace AzureConfigManager.Services
             _credentials = new TokenCloudCredentials(subscriptionId, token);
         }
 
-        public async Task<List<WebApp>> GetApps()
+        public async Task<List<WebApp>> GetApps(Func<int, bool> totalCallback, Func<bool> iterateCallback)
         {
             using (var client = new WebSiteManagementClient(_credentials))
             {
                 var spaces = await client.WebSpaces.ListAsync();
-                var sites =
-                (await Task.WhenAll(
-                    spaces.Select(
-                            async s => await client.WebSpaces.ListWebSitesAsync(s.Name, new WebSiteListParameters()))
-                        .ToList())).SelectMany(a => a);
+                totalCallback(spaces.Count());
+                var sites = (await Task.WhenAll(spaces.Select(async s => await client.WebSpaces.ListWebSitesAsync(s.Name, new WebSiteListParameters())).ToList())).SelectMany(a => a);
+                totalCallback(sites.Count());
 
-                var apps = await Task.WhenAll(sites.Select(async s => await GetWebApp(client, s)).ToList());
+                var apps = await Task.WhenAll(sites.Select(async s =>
+                {
+                    var webApp = await GetWebApp(client, s);
+                    iterateCallback();
+                    return webApp;
+                }).ToList());
                 return apps.OrderBy(a => a.Name).ToList();
             }
         }
@@ -125,5 +128,6 @@ namespace AzureConfigManager.Services
 
             return result.AccessToken;
         }
+
     }
 }

@@ -14,6 +14,8 @@ namespace AzureConfigManager
     {
         private readonly AzureConnection _azure;
         private List<WebApp> _apps;
+        private int _progress;
+        private int _total;
 
         public FrmMain()
         {
@@ -56,7 +58,13 @@ namespace AzureConfigManager
             _azure.Connect(subscriptionId);
 
             statusLabel.Text = "Fetching data...";
-            _apps = await _azure.GetApps();
+            _progress = 0;
+
+            _apps = await _azure.GetApps(t =>
+            {
+                _total = t;
+                return true;
+            },  IterateProgress);
 
             lstApps.Items.Clear();
             var appNames = _apps.Select(a => a.Name).ToArray();
@@ -66,8 +74,20 @@ namespace AzureConfigManager
             EnableButtons();
         }
 
+        private bool IterateProgress()
+        {
+            _progress++;
+            statusLabel.Text = $"Fetching data... ({_progress}/{_total})";
+            return true;
+        }
+
         private void LstApps_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (lstApps.SelectedItem == null)
+            {
+                // You clicked in the whitespace, don't know why this event even fires...
+                return;
+            }
             var name = lstApps.SelectedItem.ToString();
             var app = _apps.Single(a => a.Name == name);
 
@@ -76,8 +96,7 @@ namespace AzureConfigManager
             PopulateDataGridFromSettings(connectionStringsGrid, app.ConnectionStrings, true);
         }
 
-        private static void PopulateDataGridFromSettings(DataGridView dataGrid, IEnumerable<Setting> settings,
-            bool withSql)
+        private static void PopulateDataGridFromSettings(DataGridView dataGrid, IEnumerable<Setting> settings, bool withSql)
         {
             object[][] rows;
 
@@ -116,6 +135,8 @@ namespace AzureConfigManager
             EnableButtons();
 
             await RefreshData();
+
+            lstApps.SelectedItem = name;
         }
 
         private void DisableButtons()
