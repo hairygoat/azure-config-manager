@@ -64,6 +64,7 @@ namespace AzureConfigManager.Services
         {
             var currentConfig = await client.WebSites.GetConfigurationAsync(site.WebSpace, site.Name,
                 CancellationToken.None);
+
             var settings =
                 currentConfig.AppSettings.Select(d => new Setting {Key = d.Key, Value = d.Value, IsSql = false})
                     .ToList();
@@ -74,9 +75,22 @@ namespace AzureConfigManager.Services
                 Name = site.Name,
                 WebSpace = site.WebSpace,
                 AppSettings = settings,
-                ConnectionStrings = connectionStrings
+                ConnectionStrings = connectionStrings,
+                FtpSettings = GetFtpSettings(site, currentConfig)
             };
             return webApp;
+        }
+
+        private static FtpSettings GetFtpSettings(WebSite site, WebSiteGetConfigurationResponse currentConfig)
+        {
+            var host = site.Uri.Host.Split('.').First() + ".ftp.azurewebsites.windows.net";
+
+            return new FtpSettings
+            {
+                Host = host,
+                User = currentConfig.PublishingUserName,
+                Password = currentConfig.PublishingPassword
+            };
         }
 
         private static WebSiteUpdateConfigurationParameters.ConnectionStringInfo MapSettingToConnectionString(Setting c)

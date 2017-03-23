@@ -44,6 +44,7 @@
             this.btnCommit = new System.Windows.Forms.Button();
             this.comboSubscription = new System.Windows.Forms.ComboBox();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.btnFilezilla = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +81,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnFilezilla);
             this.splitContainer1.Panel1.Controls.Add(this.lstApps);
             // 
             // splitContainer1.Panel2
@@ -91,11 +93,13 @@
             // 
             // lstApps
             // 
-            this.lstApps.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstApps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstApps.FormattingEnabled = true;
             this.lstApps.Location = new System.Drawing.Point(0, 0);
             this.lstApps.Name = "lstApps";
-            this.lstApps.Size = new System.Drawing.Size(125, 422);
+            this.lstApps.Size = new System.Drawing.Size(125, 394);
             this.lstApps.TabIndex = 0;
             this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
             // 
@@ -224,6 +228,18 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
+            // btnFilezilla
+            // 
+            this.btnFilezilla.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFilezilla.Location = new System.Drawing.Point(0, 397);
+            this.btnFilezilla.Name = "btnFilezilla";
+            this.btnFilezilla.Size = new System.Drawing.Size(125, 22);
+            this.btnFilezilla.TabIndex = 1;
+            this.btnFilezilla.Text = "Open in Filezilla";
+            this.btnFilezilla.UseVisualStyleBackColor = true;
+            this.btnFilezilla.Click += new System.EventHandler(this.btnFilezilla_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,6 +290,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ConnectionString;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsSql;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button btnFilezilla;
     }
 }
 

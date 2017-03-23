@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace AzureConfigManager
     {
         private readonly AzureConnection _azure;
         private List<WebApp> _apps;
+        private WebApp _currentApp;
         private int _progress;
         private int _total;
 
@@ -89,11 +91,11 @@ namespace AzureConfigManager
                 return;
             }
             var name = lstApps.SelectedItem.ToString();
-            var app = _apps.Single(a => a.Name == name);
+            _currentApp = _apps.Single(a => a.Name == name);
 
-            PopulateDataGridFromSettings(appSettingsGrid, app.AppSettings, false);
+            PopulateDataGridFromSettings(appSettingsGrid, _currentApp.AppSettings, false);
 
-            PopulateDataGridFromSettings(connectionStringsGrid, app.ConnectionStrings, true);
+            PopulateDataGridFromSettings(connectionStringsGrid, _currentApp.ConnectionStrings, true);
         }
 
         private static void PopulateDataGridFromSettings(DataGridView dataGrid, IEnumerable<Setting> settings, bool withSql)
@@ -156,6 +158,18 @@ namespace AzureConfigManager
             var settingsDialog = new FrmSettings();
             settingsDialog.ShowDialog();
             LoadSubscriptions();
+        }
+
+        private void btnFilezilla_Click(object sender, EventArgs e)
+        {
+            if (_currentApp == null)
+            {
+                return;
+            }
+
+            // TODO: Config
+            var fileZillaLocation = "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe";
+            Process.Start(fileZillaLocation, _currentApp.FtpSettings.FilezillaArgument);
         }
     }
 }
