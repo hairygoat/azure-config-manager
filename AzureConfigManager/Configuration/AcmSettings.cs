@@ -17,6 +17,7 @@ namespace AzureConfigManager.Configuration
         public string ClientId { get; set; }
         public string RedirectUri { get; set; }
         public Dictionary<string, string> Subscriptions { get; set; }
+        public string FileZillaLocation { get; set; }
 
         public static AcmSettings Load()
         {

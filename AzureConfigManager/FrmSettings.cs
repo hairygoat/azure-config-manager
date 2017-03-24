@@ -24,6 +24,7 @@ namespace AzureConfigManager
             txtApiEndpoint.Text = settings.ApiEndpoint;
             txtClientId.Text = settings.ClientId;
             txtRedirectUri.Text = settings.RedirectUri;
+            txtFileZillaLocation.Text = settings.FileZillaLocation;
             DataGridHelpers.FillDataGridFromDictionary(gridSubscriptions, settings.Subscriptions);
         }
 
@@ -36,7 +37,8 @@ namespace AzureConfigManager
                 ApiEndpoint = txtApiEndpoint.Text,
                 ClientId = txtClientId.Text,
                 RedirectUri = txtRedirectUri.Text,
-                Subscriptions = DataGridHelpers.DataGridToDictionary(gridSubscriptions)
+                Subscriptions = DataGridHelpers.DataGridToDictionary(gridSubscriptions),
+                FileZillaLocation = txtFileZillaLocation.Text
             };
             AcmSettings.Save(settings);
         }

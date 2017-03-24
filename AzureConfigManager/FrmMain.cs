@@ -79,7 +79,7 @@ namespace AzureConfigManager
         private bool IterateProgress()
         {
             _progress++;
-            statusLabel.Text = $"Fetching data... ({_progress}/{_total})";
+            statusLabel.Text = $"Loading web apps... ({_progress}/{_total})";
             return true;
         }
 
@@ -167,8 +167,7 @@ namespace AzureConfigManager
                 return;
             }
 
-            // TODO: Config
-            var fileZillaLocation = "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe";
+            var fileZillaLocation = AcmSettings.Load().FileZillaLocation;
             Process.Start(fileZillaLocation, _currentApp.FtpSettings.FilezillaArgument);
         }
     }
