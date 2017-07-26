@@ -48,17 +48,23 @@ namespace AzureConfigManager
             }
             else
             {
-                await RefreshData();
+                await RefreshWebApps();
             }
         }
 
-        private async Task RefreshData()
+        private void Connect()
         {
             statusLabel.Text = "Connecting to Azure...";
             DisableButtons();
             var subscriptionId = comboSubscription.SelectedItem.ToString().Split('=')[1];
             _azure.Connect(subscriptionId);
+            EnableButtons();
+        }
 
+        private async Task RefreshWebApps()
+        {
+            Connect();
+            DisableButtons();
             statusLabel.Text = "Fetching data...";
             _progress = 0;
 
@@ -136,7 +142,7 @@ namespace AzureConfigManager
 
             EnableButtons();
 
-            await RefreshData();
+            await RefreshWebApps();
 
             lstApps.SelectedItem = name;
         }
@@ -144,13 +150,13 @@ namespace AzureConfigManager
         private void DisableButtons()
         {
             btnCommit.Enabled = false;
-            btnLoadCredentials.Enabled = false;
+            btnLoadWebApps.Enabled = false;
         }
 
         private void EnableButtons()
         {
             btnCommit.Enabled = true;
-            btnLoadCredentials.Enabled = true;
+            btnLoadWebApps.Enabled = true;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -169,6 +175,55 @@ namespace AzureConfigManager
 
             var fileZillaLocation = AcmSettings.Load().FileZillaLocation;
             Process.Start(fileZillaLocation, _currentApp.FtpSettings.FilezillaArgument);
+        }
+
+        private async void btnLoadVMs_Click(object sender, EventArgs e)
+        {
+            if (comboSubscription.SelectedItem == null)
+            {
+                MessageBox.Show("Pick a subscription idiot");
+            }
+            else
+            {
+                await RefreshVMs();
+            }
+        }
+
+        private async Task RefreshVMs()
+        {
+            Connect();
+            DisableButtons();
+            statusLabel.Text = "Fetching data...";
+            _progress = 0;
+
+            await _azure.GetVms(t =>
+            {
+                _total = 0;
+                return true;
+            }, IterateProgress);
+
+            // lstApps.Items.Clear();
+            // var appNames = _apps.Select(a => a.Name).ToArray();
+            // lstApps.Items.AddRange(appNames);
+            // statusLabel.Text = $"{_apps.Count} Web Apps loaded";
+
+            EnableButtons();
+        }
+
+        private void btnUptime_Click(object sender, EventArgs e)
+        {
+            var data = _apps.Select(a =>
+                        new Tuple<string, string>(a.Name, a.AppSettings.SingleOrDefault(s => s.Key == "Service.This.SharedSecret")?.Value)).ToList();
+
+            var uptimeDialog = new FrmUptime(data);
+
+            uptimeDialog.ShowDialog();
+        }
+
+        private void btnCustomErrors_Click(object sender, EventArgs e)
+        {
+            var dialog = new FrmCustomErrors(_currentApp.FtpSettings);
+            dialog.ShowDialog();
         }
     }
 }

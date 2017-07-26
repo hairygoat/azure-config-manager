@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using AzureConfigManager.Configuration;
 using AzureConfigManager.Models;
 using Microsoft.Azure;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.WindowsAzure.Management.Compute;
 using Microsoft.WindowsAzure.Management.WebSites;
 using Microsoft.WindowsAzure.Management.WebSites.Models;
 
@@ -143,5 +145,14 @@ namespace AzureConfigManager.Services
             return result.AccessToken;
         }
 
+        public async Task<List<object>> GetVms(Func<object, bool> totalCallback, Func<bool> iterateCallback)
+        {
+            using (var client = new ComputeManagementClient(_credentials))
+            {
+                var machines = client.VirtualMachines.Get(null, null, null);
+                
+                return new List<object>();
+            }
+        }
     }
 }
