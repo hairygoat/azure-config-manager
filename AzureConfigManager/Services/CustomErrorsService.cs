@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using AzureConfigManager.Models;
 
@@ -13,26 +10,17 @@ namespace AzureConfigManager.Services
     public class CustomErrorsService
     {
         private readonly FtpSettings _ftpSettings;
+        private readonly ICredentials _credentials;
 
         public CustomErrorsService(FtpSettings ftpSettings)
         {
             _ftpSettings = ftpSettings;
+            _credentials = new NetworkCredential(ftpSettings.User, ftpSettings.Password);
         }
 
         public bool Get()
         {
-            // Get the object used to communicate with the server.  
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create($"ftp://{_ftpSettings.Host}/site/wwwroot/Web.config");
-            request.Method = WebRequestMethods.Ftp.DownloadFile;
-
-            // This example assumes the FTP site uses anonymous logon.  
-            request.Credentials = new NetworkCredential(_ftpSettings.User, _ftpSettings.Password);
-
-            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-            Stream responseStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(responseStream);
-            var config = reader.ReadToEnd();
+            var config = Read();
 
             var systemWeb = SystemWeb(config);
             var customErrors = systemWeb.Element("customErrors");
@@ -62,7 +50,52 @@ namespace AzureConfigManager.Services
 
         public void Set(bool value)
         {
-            
+            var config = Read();
+            switch (value)
+            {
+                case true:
+                    config = config.Replace("<customErrors mode=\"Off\"", "<customErrors mode=\"On\"");
+                    break;
+                case false:
+                    config = config.Replace("<customErrors mode=\"On\"", "<customErrors mode=\"Off\"");
+                    break;
+            }
+
+            Write(config);
+
+        }
+
+        private string Read()
+        {
+            var request = (FtpWebRequest)WebRequest.Create($"ftp://{_ftpSettings.Host}/site/wwwroot/Web.config");
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            // This example assumes the FTP site uses anonymous logon.  
+            request.Credentials = _credentials;
+
+            var response = (FtpWebResponse)request.GetResponse();
+
+            var responseStream = response.GetResponseStream();
+            var reader = new StreamReader(responseStream);
+            var config = reader.ReadToEnd();
+            return config;
+        }
+
+        private void Write(string text)
+        {
+            var request = (FtpWebRequest)WebRequest.Create($"ftp://{_ftpSettings.Host}/site/wwwroot/Web.config");
+            request.Method = WebRequestMethods.Ftp.UploadFile;
+
+            request.Credentials = _credentials;
+
+            var bytes = Encoding.UTF8.GetBytes(text);
+            var requestStream = request.GetRequestStream();
+            requestStream.Write(bytes, 0, bytes.Length);
+            requestStream.Close();
+
+            var response = (FtpWebResponse) request.GetResponse();
+
+            response.Close();
         }
     }
 }

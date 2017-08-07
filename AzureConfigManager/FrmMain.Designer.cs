@@ -52,6 +52,7 @@
             this.comboSubscription = new System.Windows.Forms.ComboBox();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnCustomErrors = new System.Windows.Forms.Button();
+            this.btnCustomErrorAudit = new System.Windows.Forms.Button();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnCustomErrorAudit);
             this.splitContainer1.Panel1.Controls.Add(this.btnCustomErrors);
             this.splitContainer1.Panel1.Controls.Add(this.btnUptime);
             this.splitContainer1.Panel1.Controls.Add(this.btnFilezilla);
@@ -162,7 +164,7 @@
             this.lstApps.FormattingEnabled = true;
             this.lstApps.Location = new System.Drawing.Point(0, 0);
             this.lstApps.Name = "lstApps";
-            this.lstApps.Size = new System.Drawing.Size(137, 316);
+            this.lstApps.Size = new System.Drawing.Size(137, 290);
             this.lstApps.TabIndex = 0;
             this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
             // 
@@ -329,9 +331,21 @@
             this.btnCustomErrors.Name = "btnCustomErrors";
             this.btnCustomErrors.Size = new System.Drawing.Size(137, 23);
             this.btnCustomErrors.TabIndex = 2;
-            this.btnCustomErrors.Text = "Custom Errors";
+            this.btnCustomErrors.Text = "customErrors";
             this.btnCustomErrors.UseVisualStyleBackColor = true;
             this.btnCustomErrors.Click += new System.EventHandler(this.btnCustomErrors_Click);
+            // 
+            // btnCustomErrorAudit
+            // 
+            this.btnCustomErrorAudit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCustomErrorAudit.Location = new System.Drawing.Point(0, 295);
+            this.btnCustomErrorAudit.Name = "btnCustomErrorAudit";
+            this.btnCustomErrorAudit.Size = new System.Drawing.Size(137, 23);
+            this.btnCustomErrorAudit.TabIndex = 3;
+            this.btnCustomErrorAudit.Text = "Audit customErrors";
+            this.btnCustomErrorAudit.UseVisualStyleBackColor = true;
+            this.btnCustomErrorAudit.Click += new System.EventHandler(this.btnCustomErrorAudit_Click);
             // 
             // FrmMain
             // 
@@ -391,6 +405,7 @@
         private System.Windows.Forms.Button btnLoadVMs;
         private System.Windows.Forms.Button btnUptime;
         private System.Windows.Forms.Button btnCustomErrors;
+        private System.Windows.Forms.Button btnCustomErrorAudit;
     }
 }
 

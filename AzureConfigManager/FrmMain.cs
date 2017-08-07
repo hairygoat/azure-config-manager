@@ -225,5 +225,25 @@ namespace AzureConfigManager
             var dialog = new FrmCustomErrors(_currentApp.FtpSettings);
             dialog.ShowDialog();
         }
+
+        private void btnCustomErrorAudit_Click(object sender, EventArgs e)
+        {
+            var i = 1;
+            foreach (var app in _apps)
+            {
+                var customErrors = new CustomErrorsService(app.FtpSettings);
+                if (!customErrors.Get())
+                {
+                    var result = MessageBox.Show($"({i}/{_apps.Count}) {app.Name} - customErrors are OFF! Users will see exceptions.", "",
+                        MessageBoxButtons.OKCancel);
+
+                    if (result == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+                i++;
+            }
+        }
     }
 }

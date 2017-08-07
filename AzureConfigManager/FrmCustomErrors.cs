@@ -22,11 +22,23 @@ namespace AzureConfigManager
             {
                 case true:
                     lblStatus.Text = "customErrors are ON (good)";
+                    btnSwitch.Enabled = true;
                     break;
                 default:
                     lblStatus.Text = "customErrors are OFF (bad)";
                     break;
             }
+        }
+
+        private void btnSwitch_Click(object sender, EventArgs e)
+        {
+            btnSwitch.Enabled = false;
+            btnSwitch.Text = "Please wait...";
+            _customErrors.Set(false);
+            MessageBox.Show("CustomErrors are now OFF! Click OK when finished and I'll switch them back on.");
+            _customErrors.Set(true);
+            btnSwitch.Text = "Switch them off for a bit";
+            btnSwitch.Enabled = true;
         }
     }
 }

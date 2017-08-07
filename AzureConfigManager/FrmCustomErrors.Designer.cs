@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.lblStatus = new System.Windows.Forms.Label();
+            this.btnSwitch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblStatus
@@ -40,11 +41,23 @@
             this.lblStatus.Text = "customErrors are...";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnSwitch
+            // 
+            this.btnSwitch.Enabled = false;
+            this.btnSwitch.Location = new System.Drawing.Point(12, 107);
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(179, 23);
+            this.btnSwitch.TabIndex = 1;
+            this.btnSwitch.Text = "Switch them off for a bit";
+            this.btnSwitch.UseVisualStyleBackColor = true;
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            // 
             // FrmCustomErrors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(203, 142);
+            this.Controls.Add(this.btnSwitch);
             this.Controls.Add(this.lblStatus);
             this.Name = "FrmCustomErrors";
             this.Text = "FrmCustomErrors";
@@ -56,5 +69,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button btnSwitch;
     }
 }
