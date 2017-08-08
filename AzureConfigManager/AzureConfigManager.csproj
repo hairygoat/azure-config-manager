@@ -115,6 +115,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AcmSettings.cs" />
+    <Compile Include="FrmConfigXml.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConfigXml.Designer.cs">
+      <DependentUpon>FrmConfigXml.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCustomErrors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </Compile>
     <Compile Include="Models\WebApp.cs" />
     <Compile Include="Services\CustomErrorsService.cs" />
+    <EmbeddedResource Include="FrmConfigXml.resx">
+      <DependentUpon>FrmConfigXml.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCustomErrors.resx">
       <DependentUpon>FrmCustomErrors.cs</DependentUpon>
     </EmbeddedResource>

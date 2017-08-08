@@ -245,5 +245,12 @@ namespace AzureConfigManager
                 i++;
             }
         }
+
+        private void btnWebConfig_Click(object sender, EventArgs e)
+        {
+            var dialog = new FrmConfigXml(_currentApp);
+
+            dialog.ShowDialog();
+        }
     }
 }
