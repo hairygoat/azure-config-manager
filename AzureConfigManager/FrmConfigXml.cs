@@ -29,8 +29,18 @@ namespace AzureConfigManager
 
         private static string GetConnectionStringsXml(WebApp currentApp)
         {
-            var connections = currentApp.ConnectionStrings.Select(a => $"<add name=\"{a.Key}\" connectionString=\"{a.Value}\" />");
+            var connections = currentApp.ConnectionStrings.Select(MapConnectionString);
             return string.Join(Environment.NewLine, connections.ToArray());
+        }
+
+        private static string MapConnectionString(Setting a)
+        {
+            var providerName = string.Empty;
+            if (a.IsSql)
+            {
+                providerName = "providerName=\"System.Data.SqlClient\" ";
+            }
+            return $"<add name=\"{a.Key}\" {providerName}connectionString=\"{a.Value}\" />";
         }
 
         private void txtAppSettings_Click(object sender, EventArgs e)
