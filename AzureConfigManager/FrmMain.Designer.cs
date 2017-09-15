@@ -32,11 +32,11 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnLoadWebApps = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnWebConfig = new System.Windows.Forms.Button();
             this.btnCustomErrorAudit = new System.Windows.Forms.Button();
             this.btnCustomErrors = new System.Windows.Forms.Button();
             this.btnUptime = new System.Windows.Forms.Button();
             this.btnFilezilla = new System.Windows.Forms.Button();
-            this.lstApps = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.appSettingsGrid = new System.Windows.Forms.DataGridView();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,8 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.comboSubscription = new System.Windows.Forms.ComboBox();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.btnWebConfig = new System.Windows.Forms.Button();
+            this.lstApps = new System.Windows.Forms.ListBox();
+            this.btnAddMultipleSetting = new System.Windows.Forms.Button();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -120,6 +121,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnAddMultipleSetting);
             this.splitContainer1.Panel1.Controls.Add(this.btnWebConfig);
             this.splitContainer1.Panel1.Controls.Add(this.btnCustomErrorAudit);
             this.splitContainer1.Panel1.Controls.Add(this.btnCustomErrors);
@@ -133,6 +135,18 @@
             this.splitContainer1.Size = new System.Drawing.Size(675, 392);
             this.splitContainer1.SplitterDistance = 137;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // btnWebConfig
+            // 
+            this.btnWebConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnWebConfig.Location = new System.Drawing.Point(0, 270);
+            this.btnWebConfig.Name = "btnWebConfig";
+            this.btnWebConfig.Size = new System.Drawing.Size(137, 23);
+            this.btnWebConfig.TabIndex = 4;
+            this.btnWebConfig.Text = "Web.config XML";
+            this.btnWebConfig.UseVisualStyleBackColor = true;
+            this.btnWebConfig.Click += new System.EventHandler(this.btnWebConfig_Click);
             // 
             // btnCustomErrorAudit
             // 
@@ -181,18 +195,6 @@
             this.btnFilezilla.Text = "Open in Filezilla";
             this.btnFilezilla.UseVisualStyleBackColor = true;
             this.btnFilezilla.Click += new System.EventHandler(this.btnFilezilla_Click);
-            // 
-            // lstApps
-            // 
-            this.lstApps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstApps.FormattingEnabled = true;
-            this.lstApps.Location = new System.Drawing.Point(0, 0);
-            this.lstApps.Name = "lstApps";
-            this.lstApps.Size = new System.Drawing.Size(137, 264);
-            this.lstApps.TabIndex = 0;
-            this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
             // 
             // splitContainer2
             // 
@@ -349,17 +351,30 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
-            // btnWebConfig
+            // lstApps
             // 
-            this.btnWebConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lstApps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWebConfig.Location = new System.Drawing.Point(0, 270);
-            this.btnWebConfig.Name = "btnWebConfig";
-            this.btnWebConfig.Size = new System.Drawing.Size(137, 23);
-            this.btnWebConfig.TabIndex = 4;
-            this.btnWebConfig.Text = "Web.config XML";
-            this.btnWebConfig.UseVisualStyleBackColor = true;
-            this.btnWebConfig.Click += new System.EventHandler(this.btnWebConfig_Click);
+            this.lstApps.FormattingEnabled = true;
+            this.lstApps.Location = new System.Drawing.Point(0, 0);
+            this.lstApps.Name = "lstApps";
+            this.lstApps.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstApps.Size = new System.Drawing.Size(137, 238);
+            this.lstApps.TabIndex = 0;
+            this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
+            // 
+            // btnAddMultipleSetting
+            // 
+            this.btnAddMultipleSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddMultipleSetting.Location = new System.Drawing.Point(0, 244);
+            this.btnAddMultipleSetting.Name = "btnAddMultipleSetting";
+            this.btnAddMultipleSetting.Size = new System.Drawing.Size(137, 23);
+            this.btnAddMultipleSetting.TabIndex = 5;
+            this.btnAddMultipleSetting.Text = "Add setting to multiple";
+            this.btnAddMultipleSetting.UseVisualStyleBackColor = true;
+            this.btnAddMultipleSetting.Click += new System.EventHandler(this.btnAddMultipleSetting_Click);
             // 
             // FrmMain
             // 
@@ -398,7 +413,6 @@
 
         private System.Windows.Forms.Button btnLoadWebApps;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListBox lstApps;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView appSettingsGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
@@ -421,6 +435,8 @@
         private System.Windows.Forms.Button btnCustomErrors;
         private System.Windows.Forms.Button btnCustomErrorAudit;
         private System.Windows.Forms.Button btnWebConfig;
+        private System.Windows.Forms.ListBox lstApps;
+        private System.Windows.Forms.Button btnAddMultipleSetting;
     }
 }
 

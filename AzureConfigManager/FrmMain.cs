@@ -252,5 +252,17 @@ namespace AzureConfigManager
 
             dialog.ShowDialog();
         }
+
+        private void btnAddMultipleSetting_Click(object sender, EventArgs e)
+        {
+            var apps = new List<WebApp>();
+            
+            foreach (var app in lstApps.SelectedItems)
+            {
+                apps.Add(_apps.Single(a => a.Name == app.ToString()));
+            }
+            var dialog = new FrmMultiSetting(_azure, apps);
+            dialog.ShowDialog();
+        }
     }
 }
