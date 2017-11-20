@@ -26,11 +26,13 @@ namespace AzureConfigManager.Helpers
 
                 if (rowArray.Count == 3)
                 {
+
+                    var isSql = GetBoolValue(rowArray[2]);
                     settings.Add(new Setting
                     {
                         Key = rowArray[0].Value.ToString(),
                         Value = rowArray[1].Value.ToString(),
-                        IsSql = (bool) (rowArray[2]?.Value ?? false)
+                        IsSql = isSql
                     });
                 }
                 else
@@ -44,6 +46,23 @@ namespace AzureConfigManager.Helpers
                 }
             }
             return settings.OrderBy(s => s.Key).ToList();
+        }
+
+        private static bool GetBoolValue(DataGridViewCell cell)
+        {
+            if (cell == null)
+            {
+                return false;
+            }
+            switch (cell.Value)
+            {
+                case string s:
+                    return bool.Parse(s);
+                case bool b:
+                    return b;
+                default:
+                    return (bool) cell.Value;
+            }
         }
 
         public static Dictionary<string, string> DataGridToDictionary(DataGridView grid)

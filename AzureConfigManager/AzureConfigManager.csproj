@@ -215,4 +215,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <PackageReference Include="ILMerge"/>
+  </ItemGroup>
+  <Target Name="ILMerge">
+    <Exec Command="..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /out:ACM.exe /wildcards bin\$(Configuration)\AzureConfigManager.exe bin\$(Configuration)\*.dll" />
+  </Target>
 </Project>

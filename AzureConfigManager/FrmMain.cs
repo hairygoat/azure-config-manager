@@ -264,5 +264,27 @@ namespace AzureConfigManager
             var dialog = new FrmMultiSetting(_azure, apps);
             dialog.ShowDialog();
         }
+
+        private void SettingsGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            var grid = (DataGridView)sender;
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                var data = grid.GetClipboardContent();
+                Clipboard.SetDataObject(data);
+                e.Handled = true;
+            }
+            else if (e.Control && e.KeyCode == Keys.V)
+            {
+                var data = Clipboard.GetText();
+                
+                var rows = data.Replace("\r\n", "\n").Split('\n').Select(r => r.Split('\t').Select(v => v.Trim()).ToArray()).ToArray();
+
+                foreach (object[] row in rows)
+                {
+                    grid.Rows.Add(row);
+                }
+            }
+        }
     }
 }

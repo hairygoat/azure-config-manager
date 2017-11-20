@@ -32,11 +32,13 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnLoadWebApps = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnAddMultipleSetting = new System.Windows.Forms.Button();
             this.btnWebConfig = new System.Windows.Forms.Button();
             this.btnCustomErrorAudit = new System.Windows.Forms.Button();
             this.btnCustomErrors = new System.Windows.Forms.Button();
             this.btnUptime = new System.Windows.Forms.Button();
             this.btnFilezilla = new System.Windows.Forms.Button();
+            this.lstApps = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.appSettingsGrid = new System.Windows.Forms.DataGridView();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,8 +55,6 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.comboSubscription = new System.Windows.Forms.ComboBox();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.lstApps = new System.Windows.Forms.ListBox();
-            this.btnAddMultipleSetting = new System.Windows.Forms.Button();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -136,6 +136,18 @@
             this.splitContainer1.SplitterDistance = 137;
             this.splitContainer1.TabIndex = 1;
             // 
+            // btnAddMultipleSetting
+            // 
+            this.btnAddMultipleSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddMultipleSetting.Location = new System.Drawing.Point(0, 244);
+            this.btnAddMultipleSetting.Name = "btnAddMultipleSetting";
+            this.btnAddMultipleSetting.Size = new System.Drawing.Size(137, 23);
+            this.btnAddMultipleSetting.TabIndex = 5;
+            this.btnAddMultipleSetting.Text = "Add setting to multiple";
+            this.btnAddMultipleSetting.UseVisualStyleBackColor = true;
+            this.btnAddMultipleSetting.Click += new System.EventHandler(this.btnAddMultipleSetting_Click);
+            // 
             // btnWebConfig
             // 
             this.btnWebConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -196,6 +208,19 @@
             this.btnFilezilla.UseVisualStyleBackColor = true;
             this.btnFilezilla.Click += new System.EventHandler(this.btnFilezilla_Click);
             // 
+            // lstApps
+            // 
+            this.lstApps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstApps.FormattingEnabled = true;
+            this.lstApps.Location = new System.Drawing.Point(0, 0);
+            this.lstApps.Name = "lstApps";
+            this.lstApps.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstApps.Size = new System.Drawing.Size(137, 238);
+            this.lstApps.TabIndex = 0;
+            this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -217,6 +242,7 @@
             // appSettingsGrid
             // 
             this.appSettingsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.appSettingsGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.appSettingsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.appSettingsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
@@ -226,6 +252,7 @@
             this.appSettingsGrid.Name = "appSettingsGrid";
             this.appSettingsGrid.Size = new System.Drawing.Size(534, 263);
             this.appSettingsGrid.TabIndex = 0;
+            this.appSettingsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsGrid_KeyDown);
             // 
             // Key
             // 
@@ -242,6 +269,7 @@
             // connectionStringsGrid
             // 
             this.connectionStringsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.connectionStringsGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.connectionStringsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.connectionStringsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ConnectionName,
@@ -252,6 +280,7 @@
             this.connectionStringsGrid.Name = "connectionStringsGrid";
             this.connectionStringsGrid.Size = new System.Drawing.Size(534, 125);
             this.connectionStringsGrid.TabIndex = 0;
+            this.connectionStringsGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SettingsGrid_KeyDown);
             // 
             // ConnectionName
             // 
@@ -350,31 +379,6 @@
             this.btnSettings.Text = "...";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
-            // lstApps
-            // 
-            this.lstApps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstApps.FormattingEnabled = true;
-            this.lstApps.Location = new System.Drawing.Point(0, 0);
-            this.lstApps.Name = "lstApps";
-            this.lstApps.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstApps.Size = new System.Drawing.Size(137, 238);
-            this.lstApps.TabIndex = 0;
-            this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
-            // 
-            // btnAddMultipleSetting
-            // 
-            this.btnAddMultipleSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddMultipleSetting.Location = new System.Drawing.Point(0, 244);
-            this.btnAddMultipleSetting.Name = "btnAddMultipleSetting";
-            this.btnAddMultipleSetting.Size = new System.Drawing.Size(137, 23);
-            this.btnAddMultipleSetting.TabIndex = 5;
-            this.btnAddMultipleSetting.Text = "Add setting to multiple";
-            this.btnAddMultipleSetting.UseVisualStyleBackColor = true;
-            this.btnAddMultipleSetting.Click += new System.EventHandler(this.btnAddMultipleSetting_Click);
             // 
             // FrmMain
             // 
