@@ -50,7 +50,7 @@ namespace AzureConfigManager.Helpers
 
         private static bool GetBoolValue(DataGridViewCell cell)
         {
-            if (cell == null)
+            if (cell?.Value == null)
             {
                 return false;
             }
