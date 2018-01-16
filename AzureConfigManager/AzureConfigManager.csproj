@@ -133,6 +133,12 @@
     <Compile Include="FrmMultiSetting.Designer.cs">
       <DependentUpon>FrmMultiSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSslCerts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSslCerts.Designer.cs">
+      <DependentUpon>FrmSslCerts.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUptime.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMultiSetting.resx">
       <DependentUpon>FrmMultiSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSslCerts.resx">
+      <DependentUpon>FrmSslCerts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUptime.resx">
       <DependentUpon>FrmUptime.cs</DependentUpon>
@@ -216,7 +225,7 @@
   </Target>
   -->
   <ItemGroup>
-    <PackageReference Include="ILMerge"/>
+    <PackageReference Include="ILMerge" />
   </ItemGroup>
   <Target Name="ILMerge">
     <Exec Command="..\packages\ILMerge.2.14.1208\tools\ILMerge.exe /out:ACM.exe /wildcards bin\$(Configuration)\AzureConfigManager.exe bin\$(Configuration)\*.dll" />

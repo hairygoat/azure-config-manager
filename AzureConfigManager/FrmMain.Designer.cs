@@ -55,6 +55,7 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.comboSubscription = new System.Windows.Forms.ComboBox();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.btnSsl = new System.Windows.Forms.Button();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -121,6 +122,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnSsl);
             this.splitContainer1.Panel1.Controls.Add(this.btnAddMultipleSetting);
             this.splitContainer1.Panel1.Controls.Add(this.btnWebConfig);
             this.splitContainer1.Panel1.Controls.Add(this.btnCustomErrorAudit);
@@ -140,7 +142,7 @@
             // 
             this.btnAddMultipleSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddMultipleSetting.Location = new System.Drawing.Point(0, 244);
+            this.btnAddMultipleSetting.Location = new System.Drawing.Point(0, 248);
             this.btnAddMultipleSetting.Name = "btnAddMultipleSetting";
             this.btnAddMultipleSetting.Size = new System.Drawing.Size(137, 23);
             this.btnAddMultipleSetting.TabIndex = 5;
@@ -152,7 +154,7 @@
             // 
             this.btnWebConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWebConfig.Location = new System.Drawing.Point(0, 270);
+            this.btnWebConfig.Location = new System.Drawing.Point(0, 271);
             this.btnWebConfig.Name = "btnWebConfig";
             this.btnWebConfig.Size = new System.Drawing.Size(137, 23);
             this.btnWebConfig.TabIndex = 4;
@@ -217,7 +219,7 @@
             this.lstApps.Location = new System.Drawing.Point(0, 0);
             this.lstApps.Name = "lstApps";
             this.lstApps.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstApps.Size = new System.Drawing.Size(137, 238);
+            this.lstApps.Size = new System.Drawing.Size(137, 225);
             this.lstApps.TabIndex = 0;
             this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
             // 
@@ -380,6 +382,18 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
+            // btnSsl
+            // 
+            this.btnSsl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSsl.Location = new System.Drawing.Point(0, 224);
+            this.btnSsl.Name = "btnSsl";
+            this.btnSsl.Size = new System.Drawing.Size(137, 23);
+            this.btnSsl.TabIndex = 6;
+            this.btnSsl.Text = "Audit SSL";
+            this.btnSsl.UseVisualStyleBackColor = true;
+            this.btnSsl.Click += new System.EventHandler(this.btnSsl_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,6 +455,7 @@
         private System.Windows.Forms.Button btnWebConfig;
         private System.Windows.Forms.ListBox lstApps;
         private System.Windows.Forms.Button btnAddMultipleSetting;
+        private System.Windows.Forms.Button btnSsl;
     }
 }
 

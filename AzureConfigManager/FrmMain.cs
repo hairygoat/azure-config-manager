@@ -286,5 +286,10 @@ namespace AzureConfigManager
                 }
             }
         }
+
+        private void btnSsl_Click(object sender, EventArgs e)
+        {
+            new FrmSslCerts().ShowDialog();
+        }
     }
 }
