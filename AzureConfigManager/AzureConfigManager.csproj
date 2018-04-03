@@ -139,6 +139,12 @@
     <Compile Include="FrmSslCerts.Designer.cs">
       <DependentUpon>FrmSslCerts.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmText.Designer.cs">
+      <DependentUpon>FrmText.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUptime.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSslCerts.resx">
       <DependentUpon>FrmSslCerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmText.resx">
+      <DependentUpon>FrmText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUptime.resx">
       <DependentUpon>FrmUptime.cs</DependentUpon>

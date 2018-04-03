@@ -8,6 +8,7 @@ using AzureConfigManager.Configuration;
 using AzureConfigManager.Helpers;
 using AzureConfigManager.Models;
 using AzureConfigManager.Services;
+using Newtonsoft.Json;
 
 namespace AzureConfigManager
 {
@@ -290,6 +291,15 @@ namespace AzureConfigManager
         private void btnSsl_Click(object sender, EventArgs e)
         {
             new FrmSslCerts().ShowDialog();
+        }
+
+        private void btnJobStatusConfig_Click(object sender, EventArgs e)
+        {
+            var data = new
+            {
+                AppCredentials = _apps.ToDictionary(a => a.Name, a => a.FtpSettings.Password)
+            };
+            new FrmText(JsonConvert.SerializeObject(data)).ShowDialog();
         }
     }
 }

@@ -32,6 +32,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnLoadWebApps = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnSsl = new System.Windows.Forms.Button();
             this.btnAddMultipleSetting = new System.Windows.Forms.Button();
             this.btnWebConfig = new System.Windows.Forms.Button();
             this.btnCustomErrorAudit = new System.Windows.Forms.Button();
@@ -55,7 +56,7 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.comboSubscription = new System.Windows.Forms.ComboBox();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.btnSsl = new System.Windows.Forms.Button();
+            this.btnJobStatusConfig = new System.Windows.Forms.Button();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -122,6 +123,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnJobStatusConfig);
             this.splitContainer1.Panel1.Controls.Add(this.btnSsl);
             this.splitContainer1.Panel1.Controls.Add(this.btnAddMultipleSetting);
             this.splitContainer1.Panel1.Controls.Add(this.btnWebConfig);
@@ -137,6 +139,18 @@
             this.splitContainer1.Size = new System.Drawing.Size(675, 392);
             this.splitContainer1.SplitterDistance = 137;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // btnSsl
+            // 
+            this.btnSsl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSsl.Location = new System.Drawing.Point(0, 224);
+            this.btnSsl.Name = "btnSsl";
+            this.btnSsl.Size = new System.Drawing.Size(137, 23);
+            this.btnSsl.TabIndex = 6;
+            this.btnSsl.Text = "Audit SSL";
+            this.btnSsl.UseVisualStyleBackColor = true;
+            this.btnSsl.Click += new System.EventHandler(this.btnSsl_Click);
             // 
             // btnAddMultipleSetting
             // 
@@ -219,7 +233,7 @@
             this.lstApps.Location = new System.Drawing.Point(0, 0);
             this.lstApps.Name = "lstApps";
             this.lstApps.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstApps.Size = new System.Drawing.Size(137, 225);
+            this.lstApps.Size = new System.Drawing.Size(137, 199);
             this.lstApps.TabIndex = 0;
             this.lstApps.SelectedIndexChanged += new System.EventHandler(this.LstApps_SelectedIndexChanged);
             // 
@@ -382,17 +396,17 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
-            // btnSsl
+            // btnJobStatusConfig
             // 
-            this.btnSsl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnJobStatusConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSsl.Location = new System.Drawing.Point(0, 224);
-            this.btnSsl.Name = "btnSsl";
-            this.btnSsl.Size = new System.Drawing.Size(137, 23);
-            this.btnSsl.TabIndex = 6;
-            this.btnSsl.Text = "Audit SSL";
-            this.btnSsl.UseVisualStyleBackColor = true;
-            this.btnSsl.Click += new System.EventHandler(this.btnSsl_Click);
+            this.btnJobStatusConfig.Location = new System.Drawing.Point(-1, 200);
+            this.btnJobStatusConfig.Name = "btnJobStatusConfig";
+            this.btnJobStatusConfig.Size = new System.Drawing.Size(137, 23);
+            this.btnJobStatusConfig.TabIndex = 7;
+            this.btnJobStatusConfig.Text = "Get JobStatus config";
+            this.btnJobStatusConfig.UseVisualStyleBackColor = true;
+            this.btnJobStatusConfig.Click += new System.EventHandler(this.btnJobStatusConfig_Click);
             // 
             // FrmMain
             // 
@@ -456,6 +470,7 @@
         private System.Windows.Forms.ListBox lstApps;
         private System.Windows.Forms.Button btnAddMultipleSetting;
         private System.Windows.Forms.Button btnSsl;
+        private System.Windows.Forms.Button btnJobStatusConfig;
     }
 }
 
