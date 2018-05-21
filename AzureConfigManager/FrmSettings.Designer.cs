@@ -99,8 +99,20 @@
             label5.TabIndex = 12;
             label5.Text = "Redirect Uri:";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(9, 145);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(85, 13);
+            label6.TabIndex = 14;
+            label6.Text = "FileZilla location:";
+            // 
             // gridSubscriptions
             // 
+            this.gridSubscriptions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gridSubscriptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridSubscriptions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SubscriptionId,
@@ -122,6 +134,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(667, 168);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(95, 31);
@@ -132,6 +145,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Location = new System.Drawing.Point(566, 168);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 31);
@@ -173,15 +187,6 @@
             this.txtRedirectUri.Name = "txtRedirectUri";
             this.txtRedirectUri.Size = new System.Drawing.Size(301, 20);
             this.txtRedirectUri.TabIndex = 11;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(9, 145);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(85, 13);
-            label6.TabIndex = 14;
-            label6.Text = "FileZilla location:";
             // 
             // txtFileZillaLocation
             // 
